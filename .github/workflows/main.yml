@@ -16,14 +16,33 @@ jobs:
       - name: Create wrangler.toml
         env:
           USERNAME: ${{ secrets.USERNAME || '_user' }}
-          PASSWORD: ${{ secrets.PASSWORD || '_pass' }}
-          BUCKET_NAME: ${{ secrets.BUCKET_NAME || 'bucket' }}
-          NAME: ${{ vars.NAME || '' }}
+          PASSWORD: ${{ secrets.WORKERS_PASSWORD1 || '_pass' }}
+          BUCKET_NAME: ${{ secrets.WORKERS_BUCKET_NAME1 || 'bucket' }}
+          NAME: ${{ vars.WORKERS_NAME1 || '' }}
         run: |
           sed -e "s/\$USERNAME/$USERNAME/g" \
-              -e "s/\$PASSWORD/$PASSWORD/g" \
-              -e "s/\$BUCKET_NAME/$BUCKET_NAME/g" \
-              -e "s/\$NAME/$NAME/g" \
+              -e "s/\$PASSWORD/$WORKERS_PASSWORD1/g" \
+              -e "s/\$BUCKET_NAME/$WORKERS_BUCKET_NAME1/g" \
+              -e "s/\$NAME/$WORKERS_NAME1/g" \
+              wrangler.toml.template > wrangler.toml
+          cat wrangler.toml
+
+      - name: Build & Deploy Worker
+        uses: cloudflare/wrangler-action@v3
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          
+      - name: Create wrangler.toml
+        env:
+          USERNAME: ${{ secrets.USERNAME || '_user' }}
+          PASSWORD: ${{ secrets.WORKERS_PASSWORD2 || '_pass' }}
+          BUCKET_NAME: ${{ secrets.WORKERS_BUCKET_NAME2 || 'bucket' }}
+          NAME: ${{ vars.WORKERS_NAME2 || '' }}
+        run: |
+          sed -e "s/\$USERNAME/$USERNAME/g" \
+              -e "s/\$PASSWORD/$WORKERS_PASSWORD2/g" \
+              -e "s/\$BUCKET_NAME/$WORKERS_BUCKET_NAME2/g" \
+              -e "s/\$NAME/$WORKERS_NAME2/g" \
               wrangler.toml.template > wrangler.toml
           cat wrangler.toml
 
