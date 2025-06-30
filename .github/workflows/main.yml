@@ -18,12 +18,12 @@ jobs:
           USERNAME: ${{ secrets.USERNAME || '_user' }}
           PASSWORD: ${{ secrets.WORKERS_PASSWORD1 || '_pass' }}
           BUCKET_NAME: ${{ secrets.WORKERS_BUCKET_NAME1 || 'bucket' }}
-          NAME: ${{ vars.WORKERS_NAME1 || '' }}
+          WORKERS_NAME: ${{ vars.WORKERS_NAME1 || 'cf-r2-webdav' }}
         run: |
           sed -e "s/\$USERNAME/$USERNAME/g" \
-              -e "s/\$PASSWORD/$WORKERS_PASSWORD1/g" \
-              -e "s/\$BUCKET_NAME/$WORKERS_BUCKET_NAME1/g" \
-              -e "s/\$NAME/$WORKERS_NAME1/g" \
+              -e "s/\$PASSWORD/$PASSWORD/g" \
+              -e "s/\$BUCKET_NAME/$BUCKET_NAME/g" \
+              -e "s/\$WORKERS_NAME/$WORKERS_NAME/g" \
               wrangler.toml.template > wrangler.toml
           cat wrangler.toml
 
@@ -37,12 +37,12 @@ jobs:
           USERNAME: ${{ secrets.USERNAME || '_user' }}
           PASSWORD: ${{ secrets.WORKERS_PASSWORD2 || '_pass' }}
           BUCKET_NAME: ${{ secrets.WORKERS_BUCKET_NAME2 || 'bucket' }}
-          NAME: ${{ vars.WORKERS_NAME2 || '' }}
+          WORKERS_NAME: ${{ vars.WORKERS_NAME2 || 'cf-r2-webdav' }}
         run: |
           sed -e "s/\$USERNAME/$USERNAME/g" \
-              -e "s/\$PASSWORD/$WORKERS_PASSWORD2/g" \
-              -e "s/\$BUCKET_NAME/$WORKERS_BUCKET_NAME2/g" \
-              -e "s/\$NAME/$WORKERS_NAME2/g" \
+              -e "s/\$PASSWORD/$PASSWORD/g" \
+              -e "s/\$BUCKET_NAME/$BUCKET_NAME/g" \
+              -e "s/\$WORKERS_NAME/$WORKERS_NAME/g" \
               wrangler.toml.template > wrangler.toml
           cat wrangler.toml
 
