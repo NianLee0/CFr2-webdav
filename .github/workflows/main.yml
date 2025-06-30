@@ -25,7 +25,6 @@ jobs:
               -e "s/\$BUCKET_NAME/$BUCKET_NAME/g" \
               -e "s/\$WORKERS_NAME/$WORKERS_NAME/g" \
               wrangler.toml.template > wrangler.toml
-          cat wrangler.toml
 
       - name: Build & Deploy Worker
         uses: cloudflare/wrangler-action@v3
@@ -44,7 +43,6 @@ jobs:
               -e "s/\$BUCKET_NAME/$BUCKET_NAME/g" \
               -e "s/\$WORKERS_NAME/$WORKERS_NAME/g" \
               wrangler.toml.template > wrangler.toml
-          cat wrangler.toml
 
       - name: Build & Deploy Worker
         uses: cloudflare/wrangler-action@v3
