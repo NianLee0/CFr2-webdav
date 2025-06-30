@@ -18,7 +18,7 @@ jobs:
           USERNAME: ${{ secrets.USERNAME || '_user' }}
           PASSWORD: ${{ secrets.PASSWORD || '_pass' }}
           BUCKET_NAME: ${{ secrets.BUCKET_NAME || 'bucket' }}
-          NAME: ${{ variables.NAME || '' }}
+          NAME: ${{ vars.NAME || '' }}
         run: |
           sed -e "s/\$USERNAME/$USERNAME/g" \
               -e "s/\$PASSWORD/$PASSWORD/g" \
